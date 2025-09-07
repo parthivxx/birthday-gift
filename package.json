@@ -2,7 +2,7 @@
   "name": "birthday-gift",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://parthivxx.github.io/birthday-gift",
+  "homepage": "https://parthivxx.github.io/birthday-gift/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
