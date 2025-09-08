@@ -46,7 +46,7 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -64,7 +64,7 @@ body, html {
   background-repeat: repeat;
   padding: 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .navbar-heading {
@@ -92,7 +92,7 @@ body, html {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow-y: auto;
+  overflow: visible;
   padding: 16px 8px 24px 8px;
   margin-top: 8px;
   position: relative;

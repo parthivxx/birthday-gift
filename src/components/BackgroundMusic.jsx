@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import birthdayMusic from '../assets/birthday-music.mp3';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
@@ -29,6 +30,30 @@ const BackgroundMusic = () => {
           });
       }
     }
+  }, []);
+
+  // User-gesture fallback: start music on first tap/click
+  useEffect(() => {
+    const tryResumePlayback = async () => {
+      if (!audioRef.current) return;
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch (e) {
+        // Ignore; user may hit the dedicated button instead
+      }
+    };
+
+    // Use multiple events for broader device support; each is once
+    window.addEventListener('pointerdown', tryResumePlayback, { once: true });
+    window.addEventListener('touchend', tryResumePlayback, { once: true });
+    window.addEventListener('click', tryResumePlayback, { once: true });
+
+    return () => {
+      window.removeEventListener('pointerdown', tryResumePlayback);
+      window.removeEventListener('touchend', tryResumePlayback);
+      window.removeEventListener('click', tryResumePlayback);
+    };
   }, []);
 
   useEffect(() => {
@@ -73,8 +98,9 @@ const BackgroundMusic = () => {
       {/* Hidden audio element */}
       <audio
         ref={audioRef}
-        src="/birthday-music.mp3"
+        src={birthdayMusic}
         preload="auto"
+        playsInline
       />
       
       {/* Play/Pause Button */}

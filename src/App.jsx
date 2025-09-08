@@ -25,6 +25,16 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import StarIcon from '@mui/icons-material/Star';
 import BirthdaySurprise from './components/BirthdaySurprise';
 import BackgroundMusic from './components/BackgroundMusic';
+import img1 from './assets/1.jpeg';
+import img2 from './assets/2.jpeg';
+import img3 from './assets/3.jpeg';
+import img4 from './assets/4.jpeg';
+import img5 from './assets/5.jpeg';
+import img6 from './assets/6.jpeg';
+import img7 from './assets/7.jpeg';
+import img8 from './assets/8.jpeg';
+import img9 from './assets/9.jpeg';
+import img10 from './assets/10.jpeg';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -39,25 +49,61 @@ function App() {
       title: "🎉 Happy Birthday, My Love! 🎉",
       content: "Today is all about celebrating the amazing person you are. You bring so much joy and love into my life every single day.",
       icon: <CakeIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop&crop=face"
+      image: img1
     },
     {
       title: "💕 You're My Everything 💕",
       content: "Every moment with you feels like a gift. Your smile lights up my world and your love makes every day special.",
       icon: <FavoriteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop&crop=face"
+      image: img2
     },
     {
       title: "🌟 You're Simply Amazing 🌟",
       content: "Your kindness, your strength, your beautiful soul - you're everything I could ever ask for and more.",
       icon: <StarIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+      image: img3
     },
     {
       title: "🎵 Our Love Story 🎵",
       content: "Every day with you is a new chapter in our beautiful love story. I can't wait to write many more chapters together.",
       icon: <MusicNoteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+      image: img4
+    },
+    {
+      title: "🌸 Little Moments, Big Smiles 🌸",
+      content: "It's the tiny, sweet moments with you that fill my heart the most.",
+      icon: <FavoriteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
+      image: img5
+    },
+    {
+      title: "🎶 Our Favorite Vibes 🎶",
+      content: "From silly dances to shared playlists, your laughter is my melody.",
+      icon: <MusicNoteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
+      image: img6
+    },
+    {
+      title: "📸 Captured Memories 📸",
+      content: "Every picture tells our story—warmth, care, and endless love.",
+      icon: <StarIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
+      image: img7
+    },
+    {
+      title: "🌈 Bright Days Ahead 🌈",
+      content: "With you, the future looks colorful, hopeful, and full of magic.",
+      icon: <CakeIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
+      image: img8
+    },
+    {
+      title: "💫 You Shine So Bright 💫",
+      content: "Your kindness lights up every room—and my world too.",
+      icon: <StarIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
+      image: img9
+    },
+    {
+      title: "🎁 Forever My Favorite Gift 🎁",
+      content: "Your love is the greatest present—I cherish you today and always.",
+      icon: <FavoriteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
+      image: img10
     }
   ]
 
@@ -122,6 +168,12 @@ function App() {
                     {index === 1 && '💖'}
                     {index === 2 && '✨'}
                     {index === 3 && '🎭'}
+                    {index === 4 && '🌸'}
+                    {index === 5 && '🎶'}
+                    {index === 6 && '📸'}
+                    {index === 7 && '🌈'}
+                    {index === 8 && '💫'}
+                    {index === 9 && '🎁'}
                   </TimelineDot>
                   <TimelineConnector sx={{
                     background: 'linear-gradient(180deg, #00B8D9 0%, #00ACC1 100%)',
