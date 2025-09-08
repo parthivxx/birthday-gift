@@ -287,6 +287,10 @@ function App() {
               </Typography>
               
               {/* Image */}
+              {(() => {
+                const containImages = new Set([img5, img7]);
+                const useContain = containImages.has(currentMessage.image);
+                return (
               <CardMedia
                 component="img"
                 image={currentMessage.image}
@@ -294,14 +298,18 @@ function App() {
                 sx={{
                   width: '100%',
                   maxWidth: '280px',
-                  height: '280px',
-                  objectFit: 'cover',
+                  maxHeight: '280px',
+                  height: useContain ? 'auto' : '280px',
+                  objectFit: useContain ? 'contain' : 'cover',
+                  backgroundColor: useContain ? 'rgba(255,255,255,0.08)' : 'transparent',
                   borderRadius: 3,
                   margin: '0 auto',
                   border: '3px solid rgba(255, 255, 255, 0.4)',
                   boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)'
                 }}
               />
+                );
+              })()}
             </Box>
           </DialogContent>
           <DialogActions sx={{ justifyContent: 'center', pb: 3 }}>

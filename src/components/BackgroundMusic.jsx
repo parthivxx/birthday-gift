@@ -32,6 +32,40 @@ const BackgroundMusic = () => {
     }
   }, []);
 
+  // Retry autoplay briefly after mount and on visibility change
+  useEffect(() => {
+    let attempts = 0;
+    const maxAttempts = 5;
+    const tryPlay = async () => {
+      if (!audioRef.current || isPlaying) return;
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch {}
+    };
+
+    const interval = setInterval(() => {
+      attempts += 1;
+      if (attempts > maxAttempts) {
+        clearInterval(interval);
+        return;
+      }
+      tryPlay();
+    }, 1500);
+
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        tryPlay();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [isPlaying]);
+
   // User-gesture fallback: start music on first tap/click
   useEffect(() => {
     const tryResumePlayback = async () => {
@@ -100,6 +134,7 @@ const BackgroundMusic = () => {
         ref={audioRef}
         src={birthdayMusic}
         preload="auto"
+        autoPlay
         playsInline
       />
       
