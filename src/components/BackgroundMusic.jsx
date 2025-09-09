@@ -7,88 +7,56 @@ import PauseIcon from '@mui/icons-material/Pause';
 const BackgroundMusic = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume] = useState(0.5);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
     // Initialize audio
     if (audioRef.current) {
       audioRef.current.volume = volume;
-      audioRef.current.loop = true; // Loop the music
+      audioRef.current.loop = true;
       
-      // Try to autoplay when component mounts
-      const playPromise = audioRef.current.play();
+      // Try to autoplay immediately
+      const attemptAutoplay = async () => {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Autoplay prevented, waiting for user interaction');
+          setIsPlaying(false);
+        }
+      };
       
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(error => {
-            // Autoplay was prevented, user needs to interact first
-            console.log('Autoplay prevented:', error);
-            setIsPlaying(false);
-          });
-      }
+      attemptAutoplay();
     }
   }, []);
 
-  // Retry autoplay briefly after mount and on visibility change
+  // Handle user interaction to enable autoplay
   useEffect(() => {
-    let attempts = 0;
-    const maxAttempts = 5;
-    const tryPlay = async () => {
-      if (!audioRef.current || isPlaying) return;
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-      } catch {}
-    };
-
-    const interval = setInterval(() => {
-      attempts += 1;
-      if (attempts > maxAttempts) {
-        clearInterval(interval);
-        return;
-      }
-      tryPlay();
-    }, 1500);
-
-    const onVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        tryPlay();
+    const handleUserInteraction = async () => {
+      if (!hasUserInteracted && audioRef.current && !isPlaying) {
+        setHasUserInteracted(true);
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Still cannot autoplay:', error);
+        }
       }
     };
-    document.addEventListener('visibilitychange', onVisibility);
+
+    // Listen for any user interaction
+    const events = ['click', 'touchstart', 'keydown', 'mousedown'];
+    events.forEach(event => {
+      document.addEventListener(event, handleUserInteraction, { once: true });
+    });
 
     return () => {
-      clearInterval(interval);
-      document.removeEventListener('visibilitychange', onVisibility);
+      events.forEach(event => {
+        document.removeEventListener(event, handleUserInteraction);
+      });
     };
-  }, [isPlaying]);
-
-  // User-gesture fallback: start music on first tap/click
-  useEffect(() => {
-    const tryResumePlayback = async () => {
-      if (!audioRef.current) return;
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-      } catch (e) {
-        // Ignore; user may hit the dedicated button instead
-      }
-    };
-
-    // Use multiple events for broader device support; each is once
-    window.addEventListener('pointerdown', tryResumePlayback, { once: true });
-    window.addEventListener('touchend', tryResumePlayback, { once: true });
-    window.addEventListener('click', tryResumePlayback, { once: true });
-
-    return () => {
-      window.removeEventListener('pointerdown', tryResumePlayback);
-      window.removeEventListener('touchend', tryResumePlayback);
-      window.removeEventListener('click', tryResumePlayback);
-    };
-  }, []);
+  }, [hasUserInteracted, isPlaying]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -96,14 +64,18 @@ const BackgroundMusic = () => {
     }
   }, [volume]);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = async () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play();
-        setIsPlaying(true);
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Cannot play audio:', error);
+        }
       }
     }
   };
@@ -139,19 +111,36 @@ const BackgroundMusic = () => {
       />
       
       {/* Play/Pause Button */}
-      <Tooltip title={isPlaying ? "Pause Music" : "Play Music"}>
+      <Tooltip title={
+        isPlaying 
+          ? "Pause Music" 
+          : hasUserInteracted 
+            ? "Play Music" 
+            : "Click anywhere to enable music autoplay"
+      }>
         <IconButton
           onClick={togglePlayPause}
           sx={{
-            backgroundColor: 'rgba(255, 105, 180, 0.1)',
+            backgroundColor: isPlaying 
+              ? 'rgba(255, 105, 180, 0.2)' 
+              : 'rgba(255, 105, 180, 0.1)',
             color: '#ff69b4',
             '&:hover': {
-              backgroundColor: 'rgba(255, 105, 180, 0.2)',
+              backgroundColor: 'rgba(255, 105, 180, 0.3)',
               transform: 'scale(1.1)'
             },
             transition: 'all 0.3s ease',
             width: 48,
-            height: 48
+            height: 48,
+            // Add a subtle pulse animation when waiting for user interaction
+            animation: !hasUserInteracted && !isPlaying 
+              ? 'pulse 2s infinite' 
+              : 'none',
+            '@keyframes pulse': {
+              '0%': { opacity: 0.7 },
+              '50%': { opacity: 1 },
+              '100%': { opacity: 0.7 }
+            }
           }}
         >
           {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
