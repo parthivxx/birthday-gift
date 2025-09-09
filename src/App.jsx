@@ -46,38 +46,38 @@ function App() {
 
   const birthdayMessages = [
     {
-      title: "🎉 Happy Birthday, My Love! 🎉",
+      title: "🎉 Happy Birthday, Brishti ! 🎉",
       content: "Today is all about celebrating the amazing person you are. You bring so much joy and love into my life every single day.",
       icon: <CakeIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img1
     },
     {
       title: "💕 You're My Everything 💕",
-      content: "Every moment with you feels like a gift. Your smile lights up my world and your love makes every day special.",
+      content: "Your kindness, your strength, your beautiful soul - you're everything I could ever ask for and more.",
       icon: <FavoriteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img2
     },
     {
       title: "🌟 You're Simply Amazing 🌟",
-      content: "Your kindness, your strength, your beautiful soul - you're everything I could ever ask for and more.",
+      content: "Every moment with you feels like a gift. Your smile lights up my world and your love makes every day special.",
       icon: <StarIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img3
     },
     {
-      title: "🎵 Our Love Story 🎵",
-      content: "Every day with you is a new chapter in our beautiful love story. I can't wait to write many more chapters together.",
+      title: "🎵 Please be the same person you are now 🎵",
+      content: "Let's make this cute chhotto brishti inside you happy and cheerful.",
       icon: <MusicNoteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img4
     },
     {
       title: "🌸 Little Moments, Big Smiles 🌸",
-      content: "It's the tiny, sweet moments with you that fill my heart the most.",
+      content: "Hopefully future e tomar dadar sathe situation better hobe. He's lucky to have you as his sister.",
       icon: <FavoriteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img5
     },
     {
-      title: "🎶 Our Favorite Vibes 🎶",
-      content: "From silly dances to shared playlists, your laughter is my melody.",
+      title: "🎶 The great mother-daughter bond 🎶",
+      content: "Trust me , you're the best daughter anyone mother can ask for. Maa tomar upor khub proud hobe ekdin",
       icon: <MusicNoteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img6
     },
@@ -89,19 +89,19 @@ function App() {
     },
     {
       title: "🌈 Bright Days Ahead 🌈",
-      content: "With you, the future looks colorful, hopeful, and full of magic.",
+      content: "This mayebe tough times , but let's stick together and shine as bright as your face.",
       icon: <CakeIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img8
     },
     {
-      title: "💫 You Shine So Bright 💫",
-      content: "Your kindness lights up every room—and my world too.",
+      title: "💫 Bueatiful Family 💫",
+      content: "This is the beautiful family you have created. I'm so proud of you for being a part of this family.",
       icon: <StarIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img9
     },
     {
       title: "🎁 Forever My Favorite Gift 🎁",
-      content: "Your love is the greatest present—I cherish you today and always.",
+      content: "Erokom e tomar baccha kaccha der bhalobashte thako , they need you so much.",
       icon: <FavoriteIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img10
     }
@@ -135,7 +135,7 @@ function App() {
     <>
       <div className='parent-box'>
         <header className="navbar-heading">
-          <h1>Happy Birthday Bubby! 💖</h1>
+          <h1>Happy Birthday Brishti! 💖</h1>
         </header>
         
         <div className="timeline-scroll-container">
@@ -215,7 +215,7 @@ function App() {
               onClick={handleSpecialSurprise}
               className="special-surprise-button"
             >
-              🎁 Special Birthday Surprise! 🎁
+              🎁 My wishes to my bubby! 🎁
             </Button>
           </Box>
         </div>

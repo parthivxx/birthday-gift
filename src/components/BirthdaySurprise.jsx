@@ -14,7 +14,7 @@ const BirthdaySurprise = ({ isVisible, onClose }) => {
     },
     {
       title: "💝 You're Special! 💝",
-      message: "Every moment with you is a gift. Thank you for being the amazing person you are!",
+      message: "I know I'm not the best boy-friend but I'll keep pushing myself to be the best for you.",
       emoji: "✨"
     },
     {
@@ -24,7 +24,7 @@ const BirthdaySurprise = ({ isVisible, onClose }) => {
     },
     {
       title: "💕 Love You! 💕",
-      message: "You make every day feel like a celebration. Here's to many more beautiful moments together!",
+      message: "You make every day feel like a celebration. Here's to many more beautiful moments together , Happy Birthday!",
       emoji: "💖"
     }
   ];
