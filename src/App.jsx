@@ -94,7 +94,7 @@ function App() {
       image: img8
     },
     {
-      title: "💫 Bueatiful Family 💫",
+      title: "💫 Beautiful Family 💫",
       content: "This is the beautiful family you have created. I'm so proud of you for being a part of this family.",
       icon: <StarIcon sx={{ fontSize: 40, color: '#ff69b4' }} />,
       image: img9
